@@ -64,10 +64,10 @@ kubectl patch configmap argocd-cm -n argocd --patch-file custom-cm.yml
 ## ArgoCD RBAC
 
 1. Cluster-level RBAC
-  - Create a role to create cluster, for a role assigned to 'jai':
+  - Create a role to create cluster, for role 'jai':
 ```bash
-kubectl -n argocd patch configmap argocd-rbac-cm \
---patch='{"data":{"policy.csv":"p, role:create-cluster, clusters, create, *, allow\ng, <jai>, role, role:create-cluster"}}'
+kubectl -n argocd patch configmap argocd-rbac-cm --patch='{"data":{"policy.csv":"p, create-app, applications, create, *, allow\ng, alice, create-app"}}'
+
 ```
   - Expected output: `configmap/argocd-rbac-cm patched`
     
@@ -85,11 +85,17 @@ argocd account can-i create clusters '*'
   - Create a role with admin privileges for a project, for a role assigned to 'kia-admins':
 ```bash
 kubectl -n argocd patch configmap argocd-rbac-cm \
---patch='{"data":{"policy.csv":"p, role:<kia-admins>, applications, *, <kia-project>/*, allow\ng, <ali>, role, role:<kia-admins>"}}'
+--patch='{"data":{"policy.csv":"p, kia-admins, applications, *, kia-project/*, allow\ng, ali, kia-admins"}}'
 ```
   - `argocd account can-i sync applications <kia-project>/*`
   - expected output: `yes`
   - but this role cannot sync applications in other projects
+
+  - Create a role for an account called alice and give it the privileges to create application in any project:
+```bash
+kubectl -n argocd patch configmap argocd-rbac-cm \
+--patch='{"data":{"policy.csv":"p, role:create-app, applications, create, *, allow\ng, alice, role:create-app"}}'
+```
 
 
 ## User management
