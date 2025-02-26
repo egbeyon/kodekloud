@@ -63,7 +63,7 @@ kubectl patch configmap argocd-cm -n argocd --patch-file custom-cm.yml
 
 ## ArgoCD RBAC
 
-1. Cluster-level RBAC
+- Cluster-level RBAC
   - Create a role to create cluster, for role 'jai':
 ```bash
 kubectl -n argocd patch configmap argocd-rbac-cm --patch='{"data":{"policy.csv":"p, create-app, applications, create, *, allow\ng, alice, create-app"}}'
@@ -81,7 +81,7 @@ argocd account can-i create clusters '*'
   - but this role was not given the permission to delete a cluster
 
 
-2. Project-level RBAC
+- Project-level RBAC
   - Create a role with admin privileges for a project, for a role assigned to 'kia-admins':
 ```bash
 kubectl -n argocd patch configmap argocd-rbac-cm \
@@ -99,14 +99,14 @@ kubectl -n argocd patch configmap argocd-rbac-cm \
 
 
 ## User management
-1. Users can be added locally and through SSO
+- Users can be added locally and through SSO
    
-2. The local user can be given 2 capbilities
+- The local user can be given 2 capbilities
    - "apikey" and "login"
    - "apikey" allows creating JWT authentication for api-access
    - Login allows login access to use the UI
      
-3. The available permissions to user roles on argocd are either admin or read-only. The admin would have to edit the configmap to upgrade the roles of subsequent users
+- The available permissions to user roles on argocd are either admin or read-only. The admin would have to edit the configmap to upgrade the roles of subsequent users
    - Create account (the command below would update the configmap, by adding the account to the data field):
 ```bash
 kubectl -n argocd patch configmap argocd-cm --patch='{"data":{"accounts.<jai>": "apiKey,login"}}'
