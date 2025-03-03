@@ -94,7 +94,7 @@ kubectl -n argocd patch configmap argocd-rbac-cm \
   - Create a role for an account called alice and give it the privileges to create application in any project:
 ```bash
 kubectl -n argocd patch configmap argocd-rbac-cm \
---patch='{"data":{"policy.csv":"p, role:create-app, applications, create, *, allow\ng, alice, role:create-app"}}'
+--patch='{"data":{"policy.csv":"p, role:<create-app>, applications, create, *, allow\ng, <alice>, role:<create-app>"}}'
 ```
 
 
