@@ -1,3 +1,18 @@
+## Using Kube-bench (open-source)
+
+- Installation on linux:
+```bash
+curl -L https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0.4.0_linux_amd64.tar.gz -o kube-bench_0.4.0_linux_amd64.tar.gz
+tar -xvf kube-bench_0.4.0_linux_amd64.tar.gz
+```
+  - link `https://github.com/aquasecurity/kube-bench/releases/tag/v0.4.0`
+
+- Run a kube-bench test
+```bash
+ ./kube-bench --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml
+```
+
+
 ## Task - CIS-CAT Pro Assessor security assessment
 
 We have installed the CIS-CAT Pro Assessor tool called Assessor-CLI, under /root.
