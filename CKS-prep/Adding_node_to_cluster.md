@@ -32,4 +32,4 @@ kubeadm token create [random-token-id].[random-secret] --dry-run --print-join-co
 # Obtain the <CONTROL_PLANE_ENDPOINT> vak `kubectl get node -o wide` and <HASH> from the previous step
 kubeadm join <CONTROL_PLANE_ENDPOINT>:6443 --token 07401b.f395accd246ae52d --discovery-token-ca-cert-hash sha256:<HASH>
 ```
-  - run `kubectl get nodes` on the controlplane to confirm the addition of the node to the cluster
+  - Run `kubectl get nodes` on the controlplane to confirm the addition of the node to the cluster
