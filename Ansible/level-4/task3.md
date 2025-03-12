@@ -17,6 +17,31 @@ d. Start and enable httpd service.
 
 ## Solution
 
+- Workflow for Ansible Playbook (httpd.yml) on Jump Host to Configure App Server 3
+
+  - **Execute Playbook:** `ansible-playbook httpd.yml` on Jump Host.
+
+  - **Connect & Elevate:** Connect to App Server 3 via SSH, elevate to root.
+
+  - **Install Packages:** Install `httpd`, `php` via `yum`.
+
+  - **Create Document Root:** Create `/var/www/html/myroot` directory (owner: apache).
+
+  - **Configure Apache:**
+      - Modify `DocumentRoot` in `httpd.conf` to `/var/www/html/myroot`.
+      - Modify `<Directory>` in `httpd.conf` to `/var/www/html/myroot`.
+      - Trigger `restart_httpd` handler if changes occur.
+
+  - **Deploy PHP File:** Copy `phpinfo.php.j2` to `/var/www/html/myroot/phpinfo.php` (owner: apache). Trigger `restart_httpd` if changes occur.
+
+  - **Start/Enable httpd:** Start and enable `httpd` service.
+
+  - **Restart Handler:** If triggered, restart `httpd` service.
+
+  - **Complete:** Playbook execution finishes.
+    
+
+- The httpd.yml file:
 ```yaml
 ---
 - hosts: app3 # create a different block for stapp03 and call it app3 on the inventory file
