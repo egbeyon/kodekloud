@@ -17,7 +17,18 @@ KodeKloud-Kubernetes-CKS-060-monitoring-logging-runtime-security
 Access course notes and code in the GitHub repository below: https://github.com/kodekloudhub/certified-kubernetes-security-specialist-cks-course
 
 
+## LINUX ...
+Download the CIS benchmark PDFs from the below link:
 
+https://www.cisecurity.org/cis-benchmarks/
+
+Go to the `Operating Systems` section and search for the `Distribution Independent Linux.` Expand it to see more options, then download the CIS Benchmark.
+
+Below are some references:
+
+https://access.redhat.com/security/cve/cve-2019-3874
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports
 
 
 
